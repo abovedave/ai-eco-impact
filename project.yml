@@ -1,0 +1,92 @@
+name: AIUsageMenuBar
+options:
+  bundleIdPrefix: fyi.djl
+  deploymentTarget:
+    macOS: "13.0"
+  # Without this, XcodeGen flattens Icon.icon's package contents (icon.json,
+  # Assets/*.svg) into individual file references instead of adding it as the
+  # single opaque file Xcode 26's Icon Composer support expects.
+  fileTypes:
+    icon:
+      file: true
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.10.0"
+targets:
+  AIUsageMenuBar:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/AIUsageMenuBar
+      - path: Resources
+        buildPhase: resources
+      - path: Vendor/ccusage
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: Sparkle
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: fyi.djl.aiusagemenubar
+        # Matches Icon.icon's filename (minus extension) — same setting the
+        # target's General tab "App Icon" field writes to, just set here
+        # since project.yml is this project's source of truth.
+        ASSETCATALOG_COMPILER_APPICON_NAME: Icon
+        # Xcode's Run Script sandboxing blocks the codesign script below from
+        # touching the vendored ccusage binaries (they aren't declared as
+        # explicit script input/output paths). Disabling it is the standard
+        # fix for this — safe here since this is a local script we wrote.
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+      configs:
+        Debug:
+          # Ad-hoc signing for fast local iteration — no certificate needed.
+          CODE_SIGN_IDENTITY: "-"
+          CODE_SIGN_STYLE: Manual
+          DEVELOPMENT_TEAM: ""
+        Release:
+          # Real Developer ID signing + Hardened Runtime, both required for
+          # notarization. Run `security find-identity -v -p codesigning` to
+          # confirm this exact identity string exists locally once the
+          # Developer ID Application certificate is generated (Xcode ->
+          # Settings -> Accounts -> Manage Certificates -> "+").
+          CODE_SIGN_IDENTITY: "Developer ID Application"
+          CODE_SIGN_STYLE: Manual
+          DEVELOPMENT_TEAM: "Z4ZXD95E9B"
+          ENABLE_HARDENED_RUNTIME: YES
+    postbuildScripts:
+      - script: |
+          set -e
+          # The vendored ccusage binaries (Vendor/ccusage/darwin-{arm64,x64}/ccusage)
+          # are copied into Resources as opaque files, not as separate build
+          # products, so Xcode never signs them on its own. Sign them to match
+          # the app's own identity for this configuration — ad-hoc for Debug,
+          # or Developer ID + hardened runtime + a secure timestamp for
+          # Release, both of which notarization requires on every executable
+          # in the bundle, not just the top-level app.
+          IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:--}"
+          EXTRA_FLAGS=()
+          if [ "$IDENTITY" != "-" ]; then
+            EXTRA_FLAGS=(--options runtime --timestamp)
+          fi
+          codesign --force --sign "$IDENTITY" "${EXTRA_FLAGS[@]}" \
+            "$CODESIGNING_FOLDER_PATH/Contents/Resources/ccusage/darwin-arm64/ccusage" \
+            "$CODESIGNING_FOLDER_PATH/Contents/Resources/ccusage/darwin-x64/ccusage"
+        name: Sign vendored ccusage binaries
+        basedOnDependencyAnalysis: false
+    info:
+      path: Info.plist
+      properties:
+        CFBundleName: AI Usage
+        CFBundleDisplayName: AI Usage
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        LSUIElement: true
+        LSMinimumSystemVersion: "13.0"
+        NSHumanReadableCopyright: "© 2026 David Longworth"
+        SUFeedURL: https://abovedave.github.io/ai-eco-impact/appcast.xml
+        SUEnableAutomaticChecks: true
+        # Generated once via Sparkle's `generate_keys` tool. Safe to commit —
+        # only the matching private key (kept out of git, see README) can
+        # actually sign updates Sparkle will accept.
+        SUPublicEDKey: "fxhddqlmWa6KkOLT1zJ76g8YceyJoEjhZ8/I/34ZT54="

@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-09-14T20:38:21.849Z",
+  "source": "https://github.com/mlco2/ecologits",
+  "providerDefaults": {
+    "claude": "claude-sonnet-4-5",
+    "openai": "gpt-5",
+    "google": "gemini-2.5-pro"
+  },
+  "families": {
+    "claude-sonnet-4-5": {
+      "label": "Claude 4.5 Sonnet",
+      "provider": "claude",
+      "whPerOutputToken": 0.0019876996611398233,
+      "mlPerOutputToken": 0.007401105887657777,
+      "gco2ePerOutputToken": 0.0008449464909429762
+    },
+    "claude-opus-4-1": {
+      "label": "Claude 4.1 Opus",
+      "provider": "claude",
+      "whPerOutputToken": 0.023167263642437114,
+      "mlPerOutputToken": 0.0873658650979681,
+      "gco2ePerOutputToken": 0.009766377686852555
+    },
+    "claude-haiku-4-5": {
+      "label": "Claude 4.5 Haiku",
+      "provider": "claude",
+      "whPerOutputToken": 0.00010954380558195515,
+      "mlPerOutputToken": 0.0004162477177721797,
+      "gco2ePerOutputToken": 0.00004554240293040117
+    },
+    "gpt-5": {
+      "label": "GPT-5",
+      "provider": "openai",
+      "whPerOutputToken": 0.0016673359573053798,
+      "mlPerOutputToken": 0.006012858084965149,
+      "gco2ePerOutputToken": 0.000689509140993163
+    },
+    "gpt-5-mini": {
+      "label": "GPT-5 Mini",
+      "provider": "openai",
+      "whPerOutputToken": 0.0002532993885533559,
+      "mlPerOutputToken": 0.0009134651416270155,
+      "gco2ePerOutputToken": 0.00010309928554676448
+    },
+    "gpt-5-nano": {
+      "label": "GPT-5 Nano",
+      "provider": "openai",
+      "whPerOutputToken": 0.00006479342611797084,
+      "mlPerOutputToken": 0.00023366237282836767,
+      "gco2ePerOutputToken": 0.00002660024978087876
+    },
+    "o4-mini": {
+      "label": "o4-mini",
+      "provider": "openai",
+      "whPerOutputToken": 0.00006910654885130086,
+      "mlPerOutputToken": 0.00024921664357081786,
+      "gco2ePerOutputToken": 0.00002826707219712903
+    },
+    "o1": {
+      "label": "o1",
+      "provider": "openai",
+      "whPerOutputToken": 0.001831751960480804,
+      "mlPerOutputToken": 0.006605786036683238,
+      "gco2ePerOutputToken": 0.0007231896312564537
+    },
+    "gemini-2.5-pro": {
+      "label": "Gemini 2.5 Pro",
+      "provider": "google",
+      "whPerOutputToken": 0.019223130220534318,
+      "mlPerOutputToken": 0.0778270295493445,
+      "gco2ePerOutputToken": 0.007505628697249584
+    },
+    "gemini-2.5-flash": {
+      "label": "Gemini 2.5 Flash",
+      "provider": "google",
+      "whPerOutputToken": 0.001756482643470966,
+      "mlPerOutputToken": 0.00711131980213605,
+      "gco2ePerOutputToken": 0.0007155041056528193
+    }
+  }
+}

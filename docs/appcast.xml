@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated output — scripts/update-appcast.mjs rewrites this file on
+     every tagged release (see .github/workflows/release.yml). Don't hand-edit. -->
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>AI Usage</title>
+    <link>https://abovedave.github.io/ai-eco-impact/appcast.xml</link>
+    <description>Updates to the AI Usage menu bar app.</description>
+    <language>en</language>
+    <item>
+      <title>Version 1.0.0</title>
+      <pubDate>Mon, 21 Sep 2026 12:48:40 GMT</pubDate>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <enclosure url="https://github.com/abovedave/ai-eco-impact/releases/download/v1.0.0/AIUsageMenuBar.zip" sparkle:version="1.0.0" sparkle:shortVersionString="1.0.0" type="application/octet-stream" sparkle:edSignature="A0bdKRnB48WwH/NmrKI2ShTgJEUQp3RPjNq5cx9J12x3/WIq9NTJyA5md/67NlnYGbfZHJVLMVgfZ4SlecluAw==" length="6838835" />
+    </item>
+  </channel>
+</rss>
