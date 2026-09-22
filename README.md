@@ -1,5 +1,9 @@
 # AI Usage Menu Bar
 
+<img width="1200" height="630" alt="thumbnail" src="https://github.com/user-attachments/assets/d1b113ec-342c-4198-a143-a5c031330445" />
+
+[![Release](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml/badge.svg)](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml)
+
 macOS menu bar app. Estimates energy, water, and carbon footprint of your coding-agent CLI usage (Claude Code, Codex, Gemini CLI, Kimi, Grok Build CLI) using local data only.
 
 Inspired by [this MIT Tech Review piece](https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/).
