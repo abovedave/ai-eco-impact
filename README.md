@@ -1,8 +1,8 @@
+[![Release](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml/badge.svg)](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml)
+
 # AI Usage Menu Bar
 
 <img width="1200" height="630" alt="thumbnail" src="https://github.com/user-attachments/assets/d1b113ec-342c-4198-a143-a5c031330445" />
-
-[![Release](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml/badge.svg)](https://github.com/abovedave/ai-eco-impact/actions/workflows/release.yml)
 
 macOS menu bar app. Estimates energy, water, and carbon footprint of your coding-agent CLI usage (Claude Code, Codex, Gemini CLI) using local data only.
 
@@ -37,7 +37,6 @@ open AIUsageMenuBar.xcodeproj         # ⌘R to build & run
 Generated Xcode 26+ project via [XcodeGen](https://github.com/yonaskolb/XcodeGen) — `project.yml` is the source of truth so re-run `xcodegen generate` after editing.
 
 Runs ccusage's compiled binary directly (vendored in `Vendor/ccusage/`). Node is only needed for dev scripts, not for the built app.
-
 
 ## Releasing
 
